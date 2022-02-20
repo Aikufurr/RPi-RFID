@@ -1,16 +1,4 @@
-#ifdef WIN32
-#include <windows.h>
-#else
 #include <unistd.h>
-#endif
-
-void delay(int ms){
-#ifdef WIN32
-  Sleep(ms);
-#else
-  usleep(ms*1000);
-#endif
-}
 
 #include "MFRC522.h"
 
@@ -30,17 +18,17 @@ int main(){
     // Print UID
     for(byte i = 0; i < mfrc.uid.size; ++i){
       if(mfrc.uid.uidByte[i] < 0x10){
-	printf(" 0");
+	printf("0");
 	printf("%X",mfrc.uid.uidByte[i]);
       }
       else{
-	printf(" ");
+	printf("");
 	printf("%X", mfrc.uid.uidByte[i]);
       }
       
     }
     printf("\n");
-    delay(1000);
+    break;
   }
   return 0;
 }
